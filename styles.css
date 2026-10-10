@@ -1244,19 +1244,15 @@ summary:focus-visible {
 }
 
 .book--robot {
-    background-image: url("assets/KIT ROBÓTICA MIRIM.png");
 }
 
 .book--science {
-    background-image: url("assets/COLEÇÃO EXPERIMENTOS CIENTÍFICOS.png");
 }
 
 .book--recycle {
-    background-image: url("assets/COLEÇÃO MATERIAIS RECICLÁVEIS.png");
 }
 
 .book--paper {
-    background-image: url("assets/COLEÇÃO ARTESANATO COM PAPEL E FITA.png");
 }
 
 .book {
@@ -4751,4 +4747,17 @@ body {
 .value-list__bonus b {
     color: #4D83B3 !important;
     text-decoration: none;
+}
+
+@supports (content-visibility: auto) {
+    .problem,
+    .method,
+    .receive,
+    .testimonials,
+    .offer,
+    .faq,
+    .closing {
+        content-visibility: auto;
+        contain-intrinsic-size: auto 900px;
+    }
 }
