@@ -1,4 +1,4 @@
-$root = [System.IO.Path]::GetFullPath('D:\Mega-Inventor\mega-inventor\.lan-preview')
+$root = [System.IO.Path]::GetFullPath($PSScriptRoot)
 $server = [System.Net.Sockets.TcpListener]::new([System.Net.IPAddress]::Any, 8000)
 $server.Start()
 
