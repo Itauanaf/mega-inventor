@@ -10,6 +10,7 @@
   --science:#77c8ea;
   --craft:#efa5cb;
   --recycle:#91c99c;
+  --sale:#b53a2f;
   --white:#fff;
   color-scheme:light
 }
@@ -59,7 +60,7 @@ a {
   margin-inline:auto
 }
 .section {
-  padding:96px 0
+  padding:80px 0
 }
 .section-heading {
   max-width:760px;
@@ -207,7 +208,7 @@ p {
 }
 .pain-grid {
   display:grid;
-  grid-template-columns:repeat(4,1fr);
+  grid-template-columns:repeat(3,1fr);
   gap:24px;
   margin-top:40px
 }
@@ -431,6 +432,16 @@ p {
 .purchase>p {
   font-size:1rem
 }
+.purchase .previous-price {
+  margin:14px 0 2px;
+  color:var(--muted);
+  font-size:1rem;
+  font-weight:800
+}
+.purchase .previous-price s {
+  text-decoration-color:var(--sale);
+  text-decoration-thickness:2px
+}
 .price {
   color:var(--blue);
   font-size:1.65rem!important;
@@ -574,25 +585,19 @@ details p {
   max-width:440px;
 }
 #rotina > .container  {
-  display:grid;
-  grid-template-columns:.95fr 1.05fr;
-  gap:36px 64px;
-  align-items:start;
+  display:block;
 }
 #rotina .section-heading  {
   text-align:left;
+  margin-inline:0;
 }
 #rotina .section-heading h2  {
   font-size:clamp(1.8rem,2.5vw,2.3rem);
 }
 #rotina .pain-grid  {
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  margin-top:0;
-  gap:32px 28px;
-}
-#rotina .section-close  {
-  grid-column:1 / -1;
-  margin-top:4px;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  margin-top:36px;
+  gap:28px;
 }
 .benefits > div  {
   border-bottom:1px solid var(--line);
@@ -600,16 +605,6 @@ details p {
 }
 .benefits > div:first-child  {
   padding-top:0;
-}
-#projetos  {
-  padding-block:52px;
-  border-block:1px solid var(--line);
-}
-#projetos .section-heading  {
-  max-width:860px;
-}
-#projetos h2  {
-  font-size:clamp(1.5rem,2.3vw,2rem);
 }
 .collection-card:nth-child(2)  {
   --collection-color:var(--science);
@@ -658,14 +653,7 @@ details p {
 .faq details p  {
   padding-inline:18px 48px;
 }
-.closing h2  {
-  max-width:740px;
-  margin-inline:auto;
-}
 @media(max-width:1000px)  {
-  #rotina > .container  {
-    gap:32px;
-  }
   .offer-box > div:first-child  {
     padding:32px;
   }
@@ -792,4 +780,206 @@ details p {
     transition:none!important;
     animation:none!important
   }
+}
+
+/* ===== Conversão: idade, preço por projeto, prévias, CTA fixo ===== */
+.age-tag {
+  display:inline-block;
+  margin-top:18px!important;
+  padding:6px 14px;
+  border-radius:999px;
+  background:var(--paper);
+  color:var(--blue)!important;
+  font-size:.85rem!important;
+  font-weight:800
+}
+.per-project {
+  display:block;
+  margin-top:4px;
+  color:var(--muted);
+  font-size:.85rem;
+  font-weight:700
+}
+.hero-price .per-project { margin-top:6px }
+.purchase .per-project,.closing .per-project { text-align:inherit; margin-top:0!important }
+.season-note {
+  color:var(--yellow)!important;
+  font-weight:800
+}
+.project-preview {
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:20px;
+  margin-top:24px
+}
+.project-proof {
+  margin-top:56px;
+  padding:32px;
+  border:1px solid var(--line);
+  border-radius:18px;
+  background:var(--soft)
+}
+.project-proof-heading {
+  max-width:720px
+}
+.project-proof-heading h3 {
+  color:var(--blue);
+  font-size:1.45rem
+}
+.project-proof-heading p {
+  margin-top:8px;
+  color:var(--muted)
+}
+.preview-card {
+  margin:0;
+  border:1px solid var(--line);
+  border-radius:12px;
+  overflow:hidden;
+  background:var(--white);
+  box-shadow:0 10px 24px #123c7914
+}
+.preview-card img { display:block; width:100%; height:auto }
+.preview-card figcaption {
+  display:flex;
+  flex-direction:column;
+  gap:2px;
+  padding:12px 14px;
+  font-size:.8rem;
+  color:var(--muted)
+}
+.preview-card figcaption strong { color:var(--ink); font-size:.95rem }
+.preview-note {
+  margin-top:20px;
+  text-align:center;
+  color:var(--muted);
+  font-size:.85rem
+}
+.sticky-cta { display:none }
+@media(max-width:1000px) {
+  .project-preview { grid-template-columns:repeat(2,minmax(0,1fr)) }
+}
+@media(max-width:760px) {
+  .project-preview {
+    display:flex;
+    gap:14px;
+    overflow-x:auto;
+    scroll-snap-type:x mandatory;
+    padding-bottom:8px;
+    -webkit-overflow-scrolling:touch
+  }
+  .preview-card { flex:0 0 78%; scroll-snap-align:start }
+  .project-proof { margin-top:36px; padding:22px 16px }
+  .sticky-cta {
+    position:fixed;
+    left:0; right:0; bottom:0;
+    z-index:50;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    padding:10px 16px max(10px,env(safe-area-inset-bottom));
+    background:var(--white);
+    border-top:1px solid var(--line);
+    box-shadow:0 -6px 18px #123c7914;
+    transform:translateY(110%);
+    transition:transform .25s ease
+  }
+  .sticky-cta.is-visible { transform:translateY(0) }
+  .sticky-cta-info { display:flex; flex-direction:column; line-height:1.3 }
+  .sticky-cta-info strong { color:var(--blue); font-size:.95rem }
+  .sticky-cta-info span { color:var(--muted); font-size:.75rem; white-space:nowrap }
+  .sticky-cta-info strong { white-space:nowrap }
+  .sticky-cta .button { min-height:46px; padding:12px 18px; font-size:.85rem; box-shadow:0 2px 0 #d6a222 }
+  .site-footer { padding-bottom:max(88px,env(safe-area-inset-bottom))!important }
+}
+
+/* ===== Um projeto do começo ao fim ===== */
+.journey-steps {
+  list-style:none;
+  margin:36px 0 0;
+  padding:0;
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:24px
+}
+.journey-step {
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+  padding:20px;
+  border:1px solid var(--line);
+  border-radius:14px;
+  background:var(--white);
+  box-shadow:0 10px 24px #123c7910
+}
+.journey-step-wide { grid-column:1 / -1 }
+.journey-text h3 { margin:6px 0 4px; color:var(--ink); font-size:1.15rem }
+.journey-text p { margin:0; color:var(--muted) }
+.journey-num {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:32px; height:32px;
+  border-radius:50%;
+  background:var(--yellow);
+  color:var(--ink);
+  font-weight:900
+}
+.journey-step img { display:block; width:100%; height:auto; border-radius:10px }
+@media(max-width:760px) {
+  .journey-steps { grid-template-columns:minmax(0,1fr); gap:16px; margin-top:24px }
+  .journey-step { padding:16px }
+}
+
+/* ===== Versão enxuta ===== */
+.desire {
+  margin-top:32px;
+  padding:28px 32px;
+  border-radius:14px;
+  background:var(--blue);
+  color:#edf3ff
+}
+.desire-quote {
+  margin:0 0 10px!important;
+  color:var(--yellow)!important;
+  font-size:clamp(1.6rem,3vw,2.4rem)!important;
+  font-weight:900;
+  line-height:1.2!important
+}
+.desire p { margin:0; color:#edf3ff }
+#colecoes .preview-card figcaption .project-count { align-self:flex-start; margin-bottom:4px }
+.bonus-note {
+  margin-top:20px;
+  padding:14px 18px;
+  border-left:4px solid var(--yellow);
+  border-radius:8px;
+  background:#fff8e1;
+  color:var(--ink);
+  font-size:.95rem
+}
+.journey-compact .section-heading { margin-bottom:16px }
+.journey-points { list-style:none; padding:0; margin:0 0 20px; display:grid; gap:8px }
+.journey-points li { position:relative; padding-left:26px; color:var(--muted) }
+.journey-points li::before { content:'✓'; position:absolute; left:0; color:var(--blue); font-weight:900 }
+.journey-points strong { color:var(--ink) }
+.journey-image { display:block; position:relative; text-decoration:none }
+.journey-image img { display:block; width:100%; height:auto; border-radius:12px; border:1px solid var(--line) }
+.journey-image span { display:none }
+@media(max-width:760px) {
+  #rotina .pain-grid { grid-template-columns:minmax(0,1fr); gap:10px; margin-top:20px }
+  #rotina .pain-card { padding:14px; border:1px solid var(--line); border-radius:10px }
+  #rotina .pain-card h3 { font-size:.95rem }
+  #rotina .pain-card p { font-size:.85rem; margin-top:4px; line-height:1.45 }
+  .desire { margin-top:20px; padding:22px 20px }
+  .desire p { font-size:.95rem }
+  .bonus-note { font-size:.875rem }
+  .journey-points li { font-size:.95rem }
+  .journey-image span {
+    display:inline-block;
+    margin-top:8px;
+    color:var(--blue);
+    font-size:.8rem;
+    font-weight:800
+  }
+  .closing .per-project { text-align:center }
 }
